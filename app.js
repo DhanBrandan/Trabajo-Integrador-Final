@@ -3,59 +3,34 @@ const app = express()
 const cors = require('cors');
 const morgan = require('morgan');
 
-
+require('ejs');
 
 // Middlewares (funciones)
-app.use(express.json())
-app.use(cors())
-app.use(morgan("dev"))
+app.use(express.json());
+app.use(cors());
+app.use(morgan("dev"));
+app.set('view engine', 'ejs');
+app.get('/favicon.ico', (req, res) => res.status(204));
+
+
+ //ctrl + barra esp. para mostrar los datos q exporta
+const {sequelize} = require('./database');
+sequelize.authenticate()
+  .then(() => console.log('Conexion BD Exitosa'))
+  .catch( err => console.log('Error al conectar BD', err));
+
 
 // app.use(morgan("combined", ()=>{
 //   //Escribir archivo de texto
 // }))
-  
 
-app.get('/',  (req, res) => {
-  res.send('Creaste tu Primer Servidor')
-})
+// CARPETA PUBLICA O CARPETA DE ARCHIVO ESTATICO
+app.use(express.static('public'));
 
-app.get('/home', (req, res) => {
-    res.send("Bienvenido a tu Servidor")
-})
+//Routes
 
-//Recibir Datos por Body
-app.post('/register', (req, res) => {
-    //Cuerpo de la peticion (body)
-    const {username, password} = req.body;
-
-    //Parametros
-
-
-    //Paramtetros de consulta (query params)
-    res.send("Registro Exitoso")
-})
-
-//Recibir Datos por Parametros (variables en url)
-app.post('/usuario/:userID', (req, res) => {
-  
-  const {userID} = req.params
-
-  const { rol } = req.query
-
-  res.send({userID, rol})
-  
-})
-
-//Recibir datos por Parametros de consulta
-app.get('/consulta', (req, res) => {
-
-  const { q } = req.query
-  
-  res.send(req.query)
-
-  // http:localhost:3000/?q="url"
-
-})
+const blgRoute = require('./routes/blog.routes');
+app.use(blgRoute);
 
 app.use((req, res, next) => {
   res.status(404).send("Error 404: RUTA NO ENCONTRADA")
