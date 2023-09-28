@@ -1,0 +1,20 @@
+
+h1 {
+    color: blue;
+} 
+
+p { 
+    color: white;
+}
+
+#parrafo-item {
+    color: #d70cf1;
+}
+
+.clase-parrafo {
+    color: #0df319;
+}
+
+body  ul  li {
+    color: #0d56f3;
+}
