@@ -9,6 +9,23 @@ const {
     eliminarPublicacion, 
 } = require ('../controllers/blog.controllers');
 
+// ========================================================
+//     RUTAS PARA MANEJAR VISTAS (Views)
+// ========================================================
+
+router.get('/', (req, res) =>{
+    res.render('index')
+})
+
+router.get('/admin', (req, res) =>{
+    res.render('admin')
+})
+
+
+// ========================================================
+//     RUTAS PARA MANEJAR DATOS
+// ========================================================
+
 //Ruta para obtener todas las publicaciones.-
 router.get('/publicaciones/', obtenerPublicaciones);
 
