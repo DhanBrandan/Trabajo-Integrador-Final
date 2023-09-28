@@ -1,6 +1,6 @@
 const {sequelize, DataTypes} = require ('../database');
 
-const Publicacion = sequelize.define('Publiacion', {
+const Publicacion = sequelize.define('Publicacion', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

@@ -1,3 +1,4 @@
+//Librerias
 const express = require('express')
 const app = express()
 const cors = require('cors');
@@ -11,10 +12,10 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 app.set('view engine', 'ejs');
+
 app.get('/favicon.ico', (req, res) => res.status(204));
 
-
- //ctrl + barra esp. para mostrar los datos q exporta
+ //ctrl + barra esp. para mostrar los datos q exporta "conexion base de datos"
 const {sequelize} = require('./database');
 sequelize.authenticate()
   .then(() => console.log('Conexion BD Exitosa'))
@@ -22,13 +23,13 @@ sequelize.authenticate()
 
 const port = process.env.PORT || 3000;
 
-
 // app.use(morgan("combined", ()=>{
 //   //Escribir archivo de texto
 // }))
 
 // CARPETA PUBLICA O CARPETA DE ARCHIVO ESTATICO
 app.use(express.static('public'));
+
 
 //Routes
 

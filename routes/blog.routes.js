@@ -21,6 +21,20 @@ router.get('/admin', (req, res) =>{
     res.render('admin')
 })
 
+// Ruta para devolver la vista para administrar publicaciones
+router.get('/admin/publicaciones', (req, res) => {
+    return res.render('tabla-publicaciones')
+})
+
+// Ruta para devolver la vista para agregar nueva publicación
+router.get('/admin/nueva-publicacion', (req, res)=> {
+    return res.render('nueva-publicacion')
+})
+
+// Ruta para devolver la vista para editar publicación existente
+router.get('/admin/editar-publicacion/:id', (req, res)=> {
+    res.render('editar-publicacion', { id: req.params.id })
+})
 
 // ========================================================
 //     RUTAS PARA MANEJAR DATOS

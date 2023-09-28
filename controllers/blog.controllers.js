@@ -1,12 +1,10 @@
 const ctrl = {};
+const Publicacion = require('../models/Publicaciones');
 
-const Publicacion = require('../models/Publicacion');
-
-//Necesito un controlador para crear una nueva publicacion.-
+//Controlador para crear una nueva publicacion.-
 ctrl.crearPublicacion = async (req, res) => {
 
     //const {titulo, detalle, fecha, url_image} => req.body
-
     try {
         const publicacion = await Publicacion.create(req.body)
         await publicacion.save()
@@ -24,7 +22,7 @@ ctrl.crearPublicacion = async (req, res) => {
 
 };
 
-//Necesito un controlador para obtener todas las publicaciones.-
+//Controlador para obtener todas las publicaciones.-
 ctrl.obtenerPublicaciones = async (req, res) => {
     
     try {
@@ -40,7 +38,7 @@ ctrl.obtenerPublicaciones = async (req, res) => {
 
 };
 
-//Necesito un controlador para obtener una publicacion.-
+//NControlador para obtener una publicacion.-
 ctrl.obtenerPublicacion = async (req, res) => {
     
     try {
@@ -56,7 +54,7 @@ ctrl.obtenerPublicacion = async (req, res) => {
     }
 };
 
-//Necesito un controlador para actualizar una publicacion.-
+//Controlador para actualizar una publicacion.-
 ctrl.actualizarPublicacion = async (req, res) => {
     
     const {id} = req.params;
@@ -76,8 +74,27 @@ ctrl.actualizarPublicacion = async (req, res) => {
     }
 };
 
-//Necesito un controlador para eliminar una publicacion.-
+//Controlador para eliminar una publicacion.-
 ctrl.eliminarPublicacion = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        await Publicacion.destroy({
+            where: {
+                id
+            }
+        })
+        res.json({
+            msg: "Se elimino la publicacion correctamente"
+        })
+        } catch (error) {
+        console.error(error.message);
+            return res.status(500).json({
+                msg: 'Error al Eliminar la Publicacion'
+        })
+    
+        
+    }
     
 };
 

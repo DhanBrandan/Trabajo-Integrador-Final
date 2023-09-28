@@ -10,7 +10,7 @@ formNuevo.addEventListener('submit', async (e) => {
         titulo: document.querySelector('#titulo').value,
         detalle: document.querySelector('#detalle').value,
         img_url: document.querySelector('#img_url').value,
-        fecha_creacion: document.querySelector('#fecha').value
+        fecha_creacion: document.querySelector('#fecha_creacion').value
     }
                                         
     // Envio la informacion al Servidor
