@@ -10,8 +10,8 @@ const { Sequelize, DataTypes} = require('sequelize');
 //   });
 
 const sequelize = new Sequelize('forodb', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql' //Seleccionamos que tipo de base de datos vamos a usar.
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_DIALECT, //Seleccionamos que tipo de base de datos vamos a usar.
 });
 
 

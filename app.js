@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 require('ejs');
+require('dotenv').config();
 
 // Middlewares (funciones)
 app.use(express.json());
@@ -18,6 +19,8 @@ const {sequelize} = require('./database');
 sequelize.authenticate()
   .then(() => console.log('Conexion BD Exitosa'))
   .catch( err => console.log('Error al conectar BD', err));
+
+const port = process.env.PORT || 3000;
 
 
 // app.use(morgan("combined", ()=>{
@@ -36,4 +39,4 @@ app.use((req, res, next) => {
   res.status(404).send("Error 404: RUTA NO ENCONTRADA")
 })
 
-app.listen(3000, () => console.log("Servidor ON en http://localhost:3000"))
+app.listen(port, () => console.log(`Servidor ON en http://localhost:${port}`))
