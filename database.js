@@ -9,7 +9,7 @@ const { Sequelize, DataTypes} = require('sequelize');
 //     dialect: /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
 //   });
 
-const sequelize = new Sequelize('forodb', 'root', '', {
+const sequelize = new Sequelize( process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
   dialect: process.env.DB_DIALECT, //Seleccionamos que tipo de base de datos vamos a usar.
 });
